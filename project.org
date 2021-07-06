@@ -1,0 +1,27 @@
+#+title: This Project is for crawl files on harenka
+* Simplest DEMO
+- [X] parse one page
+- [X] parse all page
+- [X] download it
+- [ ] download it async
+
+  
+* Parse One Album
+就先只爬取一个周刊
+** Parse Pgae
+** Yield the Item
+** Pipeline
+** Download
+*** 索引
+- 多个不同 parse 共产生了4个 pagecontent
+- 你该如何规划 *index* 索引
+- fixed, storage in pipeline, not in spider
+*** 异步下载
+* FIXME
+- 索引错误，4 part
+- 下载太慢
+- asyncio loop
+- 如何在 *process_item* 中使用异步下载，查查资料
+- scrapy 项目中文件定位
+- 从终端输入 参数
+- venv 当前虚拟环境

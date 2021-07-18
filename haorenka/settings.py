@@ -64,8 +64,12 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'haorenka.pipelines.HaorenkaPipeline': 300,
+   # 'haorenka.pipelines.HaorenkaPipeline': 300,
+    'haorenka.pipelines.AsyncPipeline': 300,
 }
+
+# here some configure about image pipeline
+IMAGES_STORE = '/home/steiner/下载/福利周刊20210709：昧行成瘾2'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

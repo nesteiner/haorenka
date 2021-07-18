@@ -18,9 +18,13 @@ class AlbumCrawl(scrapy.Spider):
         # TODO parse one page
         selector = "div.entry-content p img::attr(data-src)"
         images = response.css(selector).extract()
-        output = PageContent(imageURLs=images)
         # TODO yield the output
-        yield output
+        yield {
+            'image_urls': images,
+            'images': '',
+            'image_paths': ''
+        }
+
 
     def generateURLS(self, start_url):
         count = 2

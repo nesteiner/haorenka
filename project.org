@@ -17,6 +17,7 @@
 - 你该如何规划 *index* 索引
 - fixed, storage in pipeline, not in spider
 *** 异步下载
+
 * FIXME
 - 索引错误，4 part
 - 下载太慢
@@ -25,3 +26,11 @@
 - scrapy 项目中文件定位
 - 从终端输入 参数
 - venv 当前虚拟环境
+* Git
+- rebase commit
+- push to remote repo
+
+
+* Trigger
+** Image
+** 联想

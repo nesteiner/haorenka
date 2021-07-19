@@ -44,8 +44,8 @@ from urllib.parse import urlparse
 from scrapy.exceptions import DropItem
 
 class AsyncPipeline(ImagesPipeline):
-    # def file_path(self, request, response, info, *, item):
-    #     return 'files/' + os.path.basename(urlparse(request.url).path)
+    def file_path(self, request, response=None, info=None):
+        return 'files/' + os.path.basename(urlparse(request.url).path)
 
     def get_media_requests(self, item, info):
         for image_url in item['image_urls']:

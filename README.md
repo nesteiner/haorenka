@@ -34,5 +34,5 @@
 ![img](./images/shortcut.png)  
 
 嘿嘿  
-[image](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_QSZ14mOnwuRPUdE43Jc846UpkB8ufucf3w&usqp=CAU)  
+<https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_QSZ14mOnwuRPUdE43Jc846UpkB8ufucf3w&usqp=CAU>  
 

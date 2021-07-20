@@ -6,6 +6,8 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
 import os, requests, logging, scrapy
+from io import StringIO
+
 class HaorenkaPipeline:
     count = 1
     headers = {
@@ -35,25 +37,27 @@ class HaorenkaPipeline:
             for chunk in resp.iter_content(10240):
                 f.write(chunk)
 
-        
-
 
 # Async Download Demo
-from scrapy.pipelines.images import ImagesPipeline
+from scrapy.pipelines.images import FilesPipeline
 from urllib.parse import urlparse
 from scrapy.exceptions import DropItem
 
-class AsyncPipeline(ImagesPipeline):
-    def file_path(self, request, response=None, info=None):
-        return 'files/' + os.path.basename(urlparse(request.url).path)
+class AsyncPipeline(FilesPipeline):
+    def file_path(self, request, response=None, info=None, *, item=None):
+        dirname = item['dirname']
+        basename = os.path.basename(urlparse(request.url).path)
+        return os.path.join(dirname, basename)
 
     def get_media_requests(self, item, info):
         for image_url in item['image_urls']:
             yield scrapy.Request(image_url)
 
     def item_completed(self, results, item, info):
-        image_paths = [x['path'] for ok, x in results if ok]
+        image_paths = [x['path'] for ok, x in results if ok] # here call the `file_path`
         if not image_paths:
             raise DropItem('Item contains no Images')
+
         item['image_paths'] = image_paths
         return item
+

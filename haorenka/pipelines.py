@@ -46,7 +46,14 @@ from scrapy.exceptions import DropItem
 class AsyncPipeline(FilesPipeline):
     def file_path(self, request, response=None, info=None, *, item=None):
         dirname = item['dirname']
-        basename = os.path.basename(urlparse(request.url).path)
+        result = urlparse(request.url)
+        basename = os.path.basename(result.path)
+        if basename == "common":
+            query = result.query
+            index = query.find("https")
+            result = urlparse(query[index:])
+            basename = os.path.basename(result.path)
+
         return os.path.join(dirname, basename)
 
     def get_media_requests(self, item, info):

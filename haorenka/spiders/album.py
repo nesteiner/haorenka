@@ -1,4 +1,5 @@
 import scrapy, os, logging
+from urllib.parse import urljoin
 # DONE 1. get the album name from page 
 # DONE 2. pass the link though command line
 # DONE 3. assign the `IMAGE_STORE` with album_name
@@ -10,7 +11,9 @@ class AlbumCrawl(scrapy.Spider):
         # STUB
         if album_url == None:
             raise Exception('usage: -a album_url=...')
-        
+
+        if not album_url.endswith("/"):
+            album_url += "/"
         super(AlbumCrawl, self).__init__(*args, **kwargs)
         self.start_url = album_url
         self.initialized = False
@@ -46,7 +49,7 @@ class AlbumCrawl(scrapy.Spider):
         count = 2
         lst = [self.start_url]
         while count <= 4:
-            lst.append(start_url + '/' + str(count))
+            lst.append(urljoin(start_url, str(count)))
             count += 1
         return lst
 
